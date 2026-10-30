@@ -1,0 +1,31 @@
+/* KrishiWorld demo styling — Rishi Gullapalli (rishisfdc9-daaku)
+   I kept this plain CSS on purpose: no framework, no build step, so a
+   farmer — or anyone reviewing the code — can open one file and follow it.
+   Big text, high contrast, and one clear action per section, because
+   this will be used outdoors, on a phone, in bright light. */
+:root { --green: #1b6b3a; --light: #eef6ef; --amber: #fff4d6; --red: #fdecea; --ink: #222; }
+* { box-sizing: border-box; }
+body { font-family: system-ui, -apple-system, sans-serif; color: var(--ink); margin: 0; background: #f7f7f7; line-height: 1.5; }
+header { background: var(--green); color: #fff; padding: 1.5rem; }
+header h1 { margin: 0 0 .25rem; }
+header p { margin: .25rem 0; }
+.mock-banner { background: var(--amber); padding: .75rem 1.5rem; font-weight: 600; }
+main { max-width: 820px; margin: 0 auto; padding: 1rem; }
+section { background: #fff; border: 1px solid #ddd; border-radius: 10px; padding: 1.25rem; margin: 1rem 0; }
+h2 { margin-top: 0; color: var(--green); }
+label { display: block; margin: .5rem 0 .25rem; font-weight: 600; }
+input, select, button { font-size: 1rem; padding: .55rem .7rem; border-radius: 6px; border: 1px solid #bbb; }
+button { background: var(--green); color: #fff; border: none; cursor: pointer; margin-top: .75rem; }
+button.secondary { background: #555; }
+button:disabled { opacity: .55; cursor: default; }
+#photoPreview { max-width: 100%; max-height: 260px; display: none; margin-top: .75rem; border-radius: 8px; }
+.card { background: var(--light); border-radius: 8px; padding: 1rem; margin-top: .75rem; }
+.alert-high { background: var(--red); }
+.alert-medium { background: var(--amber); }
+table { width: 100%; border-collapse: collapse; margin-top: .5rem; }
+th, td { text-align: left; padding: .45rem; border-bottom: 1px solid #ddd; }
+.dealer { border: 1px solid #cfe3d2; border-radius: 8px; padding: .75rem; margin: .5rem 0; }
+.verified { color: var(--green); font-weight: 700; }
+.motor-on { color: var(--green); font-weight: 800; }
+.motor-off { color: #a00; font-weight: 800; }
+footer { text-align: center; color: #666; padding: 1rem; font-size: .9rem; }

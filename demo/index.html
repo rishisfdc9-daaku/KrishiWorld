@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KrishiWorld — Demo | Rishi Gullapalli</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header>
+  <h1>KrishiWorld</h1>
+  <p>The world in a farmer's hand — a Salesforce app for crop problems, weather, genuine inputs, and smart water.</p>
+  <p>By Rishi Gullapalli (rishisfdc9-daaku) · Local demo — see the mock banner below.</p>
+</header>
+<div class="mock-banner">DEMO: crop-photo analysis now runs a real on-device AI model (MobileNet) when online — weather, dealers, alerts, and the motor are still mocked. No real pump is controlled and no photo leaves your browser.</div>
+
+<main>
+  <section>
+    <h2>1. Photograph the crop problem</h2>
+    <label for="cropSelect">Crop</label>
+    <select id="cropSelect">
+      <option value="paddy">Paddy</option>
+      <option value="cotton">Cotton</option>
+      <option value="tomato">Tomato</option>
+      <option value="maize">Maize</option>
+    </select>
+    <label for="photoInput">Crop photo (previewed locally only)</label>
+    <input type="file" id="photoInput" accept="image/*">
+    <img id="photoPreview" alt="Your crop photo preview">
+    <div id="diagnosis"><p>Upload a photo, then diagnose to see the on-device AI answer (or a labelled mock if the model cannot load offline).</p></div>
+    <p id="aiStatus">AI status: model not loaded yet — it loads on first diagnosis, from the CDN, when online.</p>
+    <button id="diagnoseBtn" onclick="diagnose()" disabled>Diagnose crop problem</button>
+    <p><em>Note: the on-device model is a general image classifier, not a trained crop-disease model. Its result is provisional — see ai-service/ for the fine-tuned disease-model path.</em></p>
+  </section>
+
+  <section>
+    <h2>2. Location and past 3 weeks of weather</h2>
+    <p id="locationText"></p>
+    <button class="secondary" onclick="useMyLocation()">Use my location (optional)</button>
+    <div id="weather"></div>
+  </section>
+
+  <section>
+    <h2>3. Resolution</h2>
+    <div id="resolution"><p>Run a diagnosis first — the steps will appear here.</p></div>
+  </section>
+
+  <section>
+    <h2>4. Nearby genuine dealers</h2>
+    <div id="dealers"></div>
+  </section>
+
+  <section>
+    <h2>5. Weather alerts</h2>
+    <div id="alerts"></div>
+  </section>
+
+  <section>
+    <h2>6. Smart motor and electricity timings</h2>
+    <p>I built this around one rule I will not bend: the motor only runs inside the hours the farmer actually has power. That is why timings come first, before any ON button.</p>
+    <label for="elecStart">Electricity available from</label>
+    <input type="time" id="elecStart" value="18:00">
+    <label for="elecEnd">Electricity available until</label>
+    <input type="time" id="elecEnd" value="21:00">
+    <label for="motorMinutes">Run for (minutes)</label>
+    <input type="number" id="motorMinutes" value="45" min="5" max="240">
+    <label for="soilMoisture">Soil moisture (%) — slide to see the water estimate change</label>
+    <input type="range" id="soilMoisture" min="5" max="80" value="28">
+    <p id="waterEstimate"></p>
+    <p id="motorStatus"><span class="motor-off">MOTOR OFF (mock)</span></p>
+    <button id="motorBtn" onclick="toggleMotor()">Switch motor ON (mock)</button>
+    <div id="motorLog"></div>
+  </section>
+</main>
+
+<footer>
+  KrishiWorld demo by Rishi Gullapalli (rishisfdc9-daaku) · Prototype only — not deployed, not on GitHub yet.
+  <br>Demo dosages are illustrative only. A real agronomist must confirm any treatment before use.
+</footer>
+
+<!-- TensorFlow.js + MobileNet, loaded only for on-device photo analysis.
+     No photo is sent to these CDNs — they only deliver the model code.
+     If they fail to load (offline), the demo falls back to a labelled mock. -->
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.17.0/dist/tf.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/mobilenet@2.1.0"></script>
+<script src="mock-data.js"></script>
+<script src="ai-analysis.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
