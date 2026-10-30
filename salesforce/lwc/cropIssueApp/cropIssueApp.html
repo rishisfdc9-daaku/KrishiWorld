@@ -1,0 +1,20 @@
+<!-- KrishiWorld LWC — Rishi Gullapalli (rishisfdc9-daaku)
+  I kept this template to one job per screen, in the order a farmer does
+  it: photo, answer, dealers, motor. If a screen does not help a farmer
+  act today, it does not belong on this page. -->
+<template>
+  <lightning-card title="KrishiWorld — Crop Problem">
+    <div class="slds-p-around_medium">
+      <lightning-combobox label="Crop" value={crop} options={cropOptions} onchange={handleCrop}></lightning-combobox>
+      <lightning-file-upload label="Crop photo" onuploadfinished={handlePhoto}></lightning-file-upload>
+      <lightning-button label="Diagnose crop problem" onclick={diagnose} class="slds-m-top_small"></lightning-button>
+      <template if:true={diagnosis}>
+        <p class="slds-m-top_small"><strong>Diagnosis:</strong> {diagnosis}</p>
+        <p>Confidence: {confidence}% — Severity: {severity}</p>
+      </template>
+      <template if:true={escalated}>
+        <p>An agronomist will review this case — I would rather say that honestly than guess.</p>
+      </template>
+    </div>
+  </lightning-card>
+</template>
