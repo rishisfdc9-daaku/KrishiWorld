@@ -1,0 +1,6 @@
+# KrishiWorld ai-service — no API keys, no vendor SDKs.
+# Install into a virtual environment: python -m venv .venv && source .venv/bin/activate
+torch>=2.0
+torchvision>=0.15
+Pillow>=10.0
+pytest>=7.0
